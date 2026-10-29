@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무료 상담 신청 | 바름건축 형선윤건축사사무소</title>
+  <meta name="description" content="불법건축물 양성화, 용도변경, 건축허가·신고, 아파트 행위허가 무료 상담 신청. 주소와 상황만 남겨주시면 대표 건축사가 직접 검토 후 연락드립니다.">
+  <meta property="og:title" content="무료 상담 신청 | 바름건축">
+  <meta property="og:description" content="주소 하나면 시작할 수 있습니다. 건축사가 직접 확인해 연락드립니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-neighborhood.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body data-page="consult">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="hero page-hero page-hero--compact" aria-labelledby="pageTitle">
+      <span class="hero-blob hero-blob--a"></span>
+      <span class="hero-blob hero-blob--b"></span>
+      <div class="container container--narrow" style="position:relative;">
+        <nav class="breadcrumb reveal" aria-label="현재 위치"><a href="index.html">홈</a><i class="fa-solid fa-chevron-right"></i><span>무료 상담 신청</span></nav>
+        <span class="badge reveal"><i class="fa-solid fa-user-check"></i> 대표 건축사가 직접 검토합니다</span>
+        <h1 class="hero-title reveal reveal-d1" id="pageTitle">주소 하나면 <span class="hl">충분합니다.</span></h1>
+        <p class="hero-sub reveal reveal-d2">상황을 간단히 남겨주시면 건축물대장과 법규를 먼저 확인한 뒤, <strong>가능 여부와 예상 비용</strong>을 정리해 연락드립니다.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:8px;" aria-label="상담 신청서">
+      <div class="container container--narrow">
+        <div class="consult-layout">
+          <!-- ===== FORM ===== -->
+          <div class="form-card reveal">
+            <div class="draft-notice" id="draftNotice" style="display:none;" aria-live="polite">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>작성 중이던 상담 내용이 복원되었습니다.</span>
+              <button type="button" class="btn-text" id="btnDraftReset">새로 쓰기</button>
+            </div>
+            <form id="consultForm" novalidate>
+              <!-- Step 1 -->
+              <div class="form-block">
+                <h2 class="form-step-title"><span class="n">1</span> 어떤 상담이 필요하신가요?</h2>
+                <div class="chips" role="radiogroup" aria-label="상담 분야" id="catChips">
+                  <button type="button" class="chip" role="radio" aria-checked="false" data-cat="양성화" id="cat-bulbup"><i class="fa-solid fa-house-circle-exclamation"></i> 불법건축물 양성화</button>
+                  <button type="button" class="chip" role="radio" aria-checked="false" data-cat="용도변경" id="cat-yongdo"><i class="fa-solid fa-right-left"></i> 용도변경</button>
+                  <button type="button" class="chip" role="radio" aria-checked="false" data-cat="건축허가·신고" id="cat-permit"><i class="fa-solid fa-building-circle-check"></i> 건축허가·신고</button>
+                  <button type="button" class="chip" role="radio" aria-checked="false" data-cat="행위허가" id="cat-apt"><i class="fa-solid fa-city"></i> 아파트 행위허가</button>
+                  <button type="button" class="chip" role="radio" aria-checked="false" data-cat="설계" id="cat-design"><i class="fa-solid fa-compass-drafting"></i> 설계·감리</button>
+                  <button type="button" class="chip" role="radio" aria-checked="false" data-cat="기타" id="cat-etc"><i class="fa-solid fa-comment-dots"></i> 기타 / 잘 모르겠음</button>
+                </div>
+                <input type="hidden" name="category" id="fCategory">
+                <div class="field" id="fieldCategory" style="margin-top:8px;"><span class="field-error">상담 분야를 선택해 주세요.</span></div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="form-block">
+                <h2 class="form-step-title"><span class="n">2</span> 건물 정보</h2>
+                <div class="field" id="fieldAddress">
+                  <label for="fAddress">건물 주소<span class="req">*</span></label>
+                  <input class="input" type="text" id="fAddress" name="address" placeholder="예) 서울 동대문구 제기로4나길 31" autocomplete="street-address" required>
+                  <span class="hint">도로명·지번 모두 괜찮습니다. 동·호수는 몰라도 됩니다.</span>
+                  <span class="field-error">건물 주소를 입력해 주세요.</span>
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="fType">건물 종류<span class="opt">(선택)</span></label>
+                    <select class="select" id="fType" name="buildingType">
+                      <option value="">선택해 주세요</option>
+                      <option>단독주택</option>
+                      <option>다가구주택</option>
+                      <option>다세대주택(빌라)</option>
+                      <option>아파트</option>
+                      <option>상가·근린생활시설</option>
+                      <option>공장·창고</option>
+                      <option>기타 / 잘 모르겠음</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="fRole">신청인 구분<span class="opt">(선택)</span></label>
+                    <select class="select" id="fRole" name="role">
+                      <option value="">선택해 주세요</option>
+                      <option>건물주(소유자)</option>
+                      <option>임차인·창업 예정</option>
+                      <option>매수 예정</option>
+                      <option>관리사무소·입주자대표회의</option>
+                      <option>공인중개사·시공사</option>
+                      <option>기타</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field" id="fieldMessage">
+                  <label for="fMessage">상황 설명<span class="req">*</span></label>
+                  <textarea class="textarea" id="fMessage" name="message" maxlength="2000" placeholder="예) 3층 다가구주택인데 옥상에 방을 올려서 매년 이행강제금이 나옵니다. 특별법 대상인지 궁금합니다."></textarea>
+                  <span class="hint"><span id="msgCount">0</span> / 2000자</span>
+                  <span class="field-error">어떤 상황인지 10자 이상 적어 주세요.</span>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="form-block">
+                <h2 class="form-step-title"><span class="n">3</span> 연락처</h2>
+                <div class="field-row">
+                  <div class="field" id="fieldName">
+                    <label for="fName">성함<span class="req">*</span></label>
+                    <input class="input" type="text" id="fName" name="name" autocomplete="name" placeholder="홍길동">
+                    <span class="field-error">성함을 입력해 주세요.</span>
+                  </div>
+                  <div class="field" id="fieldPhone">
+                    <label for="fPhone">연락처<span class="req">*</span></label>
+                    <input class="input" type="tel" id="fPhone" name="phone" autocomplete="tel" inputmode="numeric" placeholder="010-0000-0000">
+                    <span class="field-error">올바른 연락처를 입력해 주세요.</span>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div class="field" id="fieldEmail">
+                    <label for="fEmail">이메일<span class="opt">(선택)</span></label>
+                    <input class="input" type="email" id="fEmail" name="email" autocomplete="email" placeholder="example@email.com">
+                    <span class="field-error">이메일 형식을 확인해 주세요.</span>
+                  </div>
+                  <div class="field">
+                    <label for="fTime">연락 희망 시간<span class="opt">(선택)</span></label>
+                    <select class="select" id="fTime" name="contactTime">
+                      <option>언제든 괜찮아요</option>
+                      <option>오전 (10–12시)</option>
+                      <option>오후 (12–16시)</option>
+                      <option>늦은 오후 (16–19시)</option>
+                      <option>주말</option>
+                      <option>문자로 먼저 연락 주세요</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="form-block">
+                <h2 class="form-step-title"><span class="n">4</span> 참고 자료 <span class="opt" style="font-size:.8rem;color:var(--subtle);font-weight:500;">(선택)</span></h2>
+                <label class="dropzone" id="dropzone" for="fFiles">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <b>사진·도면·건축물대장을 끌어다 놓거나 클릭하세요</b>
+                  <small>JPG · PNG · PDF · 파일당 10MB, 최대 5개</small>
+                  <input type="file" id="fFiles" name="files" multiple accept="image/*,.pdf" class="sr-only">
+                </label>
+                <div class="file-list" id="fileList" aria-live="polite"></div>
+              </div>
+
+              <!-- Agree + submit -->
+              <div class="form-block">
+                <div class="field" id="fieldAgree">
+                  <label class="agree" for="fAgree">
+                    <input type="checkbox" id="fAgree" name="agree">
+                    <span>
+                      <b style="color:var(--ink);">개인정보 수집·이용에 동의합니다.</b> <span class="req" style="color:var(--danger);">*</span>
+                      <details>
+                        <summary>내용 보기</summary>
+                        수집 항목: 성함, 연락처, 이메일, 건물 주소, 상담 내용, 첨부 자료<br>
+                        이용 목적: 상담 회신 및 업무 검토<br>
+                        보유 기간: 상담 종료 후 1년 (계약 시 관계 법령에 따름)<br>
+                        동의를 거부할 수 있으나, 거부 시 상담 신청이 제한됩니다.
+                      </details>
+                    </span>
+                  </label>
+                  <span class="field-error">개인정보 수집·이용에 동의해 주세요.</span>
+                </div>
+                <button type="submit" class="btn btn--primary btn--lg btn--block btn--shine" id="consultSubmit" style="margin-top:22px;">
+                  <i class="fa-solid fa-paper-plane"></i> 무료 상담 신청하기
+                </button>
+                <p class="hint" style="text-align:center;margin-top:12px;">영업일 기준 24시간 이내에 연락드립니다.</p>
+              </div>
+            </form>
+
+            <!-- Success -->
+            <div class="success" id="consultSuccess" role="status" aria-live="polite" tabindex="-1">
+              <div class="success__icon"><i class="fa-solid fa-check"></i></div>
+              <h2 id="successTitle">상담 신청이 접수되었습니다</h2>
+              <p id="successDesc">검토 후 남겨주신 연락처로 연락드리겠습니다.</p>
+              <div class="success__summary" id="successSummary"></div>
+              <div class="hero-cta" style="justify-content:center;" id="successActions">
+                <a href="index.html" class="btn btn--ghost" id="success-home"><i class="fa-solid fa-house"></i> 홈으로</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== ASIDE ===== -->
+          <aside class="consult-aside">
+            <div class="aside-card aside-card--teal reveal reveal-d1">
+              <h3>바로 통화하고 싶으시다면</h3>
+              <a class="aside-phone" href="tel:050713505091" data-site-tel id="aside-phone"><span data-site="phone">0507-1350-5091</span></a>
+              <span class="open-state js-open-state" style="background:rgba(255,255,255,.12);color:#fff;"><span class="dot"></span>확인 중</span>
+              <p style="font-size:.85rem;margin-top:12px;">평일 10:00–19:00 · 주말 12:00–19:00</p>
+            </div>
+            <div class="aside-card reveal reveal-d2">
+              <h3>신청 후 진행 순서</h3>
+              <ol class="mini-steps">
+                <li><span>1</span><div>건축사가 주소로 <b>건축물대장·토지이용계획</b> 확인</div></li>
+                <li><span>2</span><div>가능 여부·필요 절차·<b>예상 비용</b> 정리</div></li>
+                <li><span>3</span><div>전화 또는 문자로 결과 안내 (상담 무료)</div></li>
+                <li><span>4</span><div>진행 결정 시 현장 조사 일정 조율</div></li>
+              </ol>
+            </div>
+            <div class="aside-card reveal reveal-d3">
+              <h3>도면·사진이 많다면</h3>
+              <p style="font-size:.9rem;">대용량 파일은 이메일로 보내주셔도 됩니다.</p>
+              <a class="link-arrow" style="margin-top:8px;" data-site-mail href="mailto:hsyarchi@naver.com" id="aside-mail"><span data-site="email">hsyarchi@naver.com</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아파트 행위허가·신고 대행 | 바름건축 형선윤건축사사무소</title>
+  <meta name="description" content="공동주택관리법에 따른 아파트 행위허가·신고. 주차장 증설, 전기차 충전시설, 공용부 대수선, 커뮤니티 시설 용도변경까지 입주자 동의 요건 검토부터 사용검사까지 건축사가 함께합니다.">
+  <meta property="og:title" content="아파트 행위허가·신고 대행 | 바름건축">
+  <meta property="og:description" content="관리사무소·입주자대표회의를 위한 행위허가 파트너. 동의 요건부터 사용검사까지.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/apt-complex.png">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body data-page="apt">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- ================= PAGE HERO ================= -->
+    <section class="hero page-hero" aria-labelledby="pageTitle">
+      <span class="hero-blob hero-blob--a"></span>
+      <span class="hero-blob hero-blob--b"></span>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <nav class="breadcrumb reveal" aria-label="현재 위치"><a href="index.html">홈</a><i class="fa-solid fa-chevron-right"></i><span>아파트 행위허가</span></nav>
+          <span class="badge reveal"><i class="fa-solid fa-city"></i> 공동주택관리법 행위허가 · 신고</span>
+          <h1 class="hero-title reveal reveal-d1" id="pageTitle">
+            단지 공사 전,<br>
+            <span class="hl">행위허가</span> 절차를<br>
+            <span class="hl-amber">한 번에</span> 정리합니다.
+          </h1>
+          <p class="hero-sub reveal reveal-d2">
+            발코니 확장·비내력벽 철거부터 주차장 증설, 전기차 충전시설, 커뮤니티 용도변경까지.
+            <strong>입주자 동의 요건</strong>부터 도면·신청·사용검사까지 건축사가 직접 진행합니다.
+          </p>
+          <div class="hero-cta reveal reveal-d3">
+            <a href="consult.html?cat=행위허가" id="apt-consult" class="btn btn--primary btn--lg btn--shine">행위허가 상담 <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#pick" id="apt-pick" class="btn btn--ghost btn--lg"><i class="fa-solid fa-table-cells-large"></i> 공사 유형 보기</a>
+          </div>
+          <div class="who-box reveal reveal-d4">
+            <i class="fa-solid fa-circle-info"></i>
+            <span><b>입주민 및 관리사무소·입주자대표회의 분께.</b> 공사 업체 선정 전에 행위허가 대상인지, 동의를 얼마나 받아야 하는지 먼저 확인하시면 일정이 훨씬 수월해집니다.</span>
+          </div>
+        </div>
+        <div class="hero-art reveal reveal-d2">
+          <div class="hero-art__frame">
+            <img src="images/apt-complex.png" alt="아파트 단지와 조경, 전기차 충전 주차장 일러스트" width="1024" height="1024" fetchpriority="high">
+          </div>
+          <div class="float-card float-card--tl">
+            <span class="float-card__icon float-card__icon--amber"><i class="fa-solid fa-users"></i></span>
+            <span><b>동의 요건 검토</b><small>공사 유형별 기준 안내</small></span>
+          </div>
+          <div class="float-card float-card--br">
+            <span class="float-card__icon"><i class="fa-solid fa-clipboard-check"></i></span>
+            <span><b>사용검사까지</b><small>준공 서류 일괄 처리</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PICK ================= -->
+    <section class="section section--white" id="pick" aria-labelledby="pickTitle">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Work types</span>
+          <h2 class="section-title" id="pickTitle">자주 진행하는 <em>행위허가 유형</em></h2>
+          <p class="section-sub">우리 집 공사(전유부)와 단지 전체 공사(공용부) 중 해당 대상을 선택해 보세요.</p>
+        </div>
+
+        <!-- 탭 전환 컨트롤 -->
+        <div class="apt-tabs-wrap reveal">
+          <div class="apt-tabs" role="tablist" aria-label="행위허가 대상 구분">
+            <button type="button" class="apt-tab is-active" role="tab" id="tabPrivate" aria-selected="true" aria-controls="panelPrivate">
+              <i class="fa-solid fa-house-chimney-user"></i>
+              <span>우리 집 공사 <strong>(전유부)</strong></span>
+            </button>
+            <button type="button" class="apt-tab" role="tab" id="tabPublic" aria-selected="false" aria-controls="panelPublic">
+              <i class="fa-solid fa-building-user"></i>
+              <span>관리사무소 · 입주자대표 <strong>(공용부)</strong></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 패널 1: 전유부 (우리 집 공사) -->
+        <div class="apt-tab-panel is-active" id="panelPrivate" role="tabpanel" aria-labelledby="tabPrivate">
+          <div class="apt-panel-notice reveal">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>개별 세대 인테리어·리모델링 공사 전, 행위허가·신고 요건과 해당 동 입주자 동의 기준을 먼저 확인하세요.</span>
+          </div>
+          <div class="pick-grid pick-grid--5">
+            <a class="pick reveal reveal-d1" href="consult.html?cat=행위허가&amp;type=발코니 확장" id="pick-balcony">
+              <span class="pick__icon"><i class="fa-solid fa-maximize"></i></span>
+              <b>발코니 확장</b>
+              <small>발코니 확장, 방화판·방화유리 및 화재감지기 법적 안전기준 검토</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick reveal reveal-d2" href="consult.html?cat=행위허가&amp;type=비내력벽 철거" id="pick-wall">
+              <span class="pick__icon"><i class="fa-solid fa-bore-hole"></i></span>
+              <b>비내력벽 철거</b>
+              <small>공간 확장 및 구조 변경을 위한 조적벽 등 비내력벽 철거 신고</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick reveal reveal-d3" href="consult.html?cat=행위허가&amp;type=입주자 공유가 아닌 복리시설 용도변경" id="pick-private-facility">
+              <span class="pick__icon"><i class="fa-solid fa-store"></i></span>
+              <b>입주자 공유가 아닌<br>복리시설 용도변경</b>
+              <small>단지 내 상가 등 개별 소유 복리시설의 영업용도 변경 허가·신고</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick reveal reveal-d4" href="consult.html?cat=행위허가&amp;type=세대구분형 공동주택" id="pick-split-house">
+              <span class="pick__icon"><i class="fa-solid fa-door-open"></i></span>
+              <b>세대구분형 공동주택</b>
+              <small>1가구를 2세대로 분리(별도 현관·욕실·주방 설치) 행위허가</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick pick--ghost reveal reveal-d1" href="consult.html?cat=행위허가&amp;type=전유부 기타" id="pick-private-etc">
+              <span class="pick__icon"><i class="fa-solid fa-circle-question"></i></span>
+              <b>기타 (잘 모르겠음)</b>
+              <small>우리 집 인테리어 공사가 행위허가 대상인지 도면으로 확인</small>
+              <span class="pick__go">문의하기 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 패널 2: 공용부 (관리사무소·입주자대표) -->
+        <div class="apt-tab-panel" id="panelPublic" role="tabpanel" aria-labelledby="tabPublic" hidden>
+          <div class="apt-panel-notice reveal">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>단지 전체 시설 개선 공사 전, 입주자 동의 기준(전체 2/3 등)과 관할 지자체 행위허가 절차를 검토해 드립니다.</span>
+          </div>
+          <div class="pick-grid pick-grid--5">
+            <a class="pick reveal reveal-d1" href="consult.html?cat=행위허가&amp;type=공용시설 용도변경" id="pick-community">
+              <span class="pick__icon"><i class="fa-solid fa-people-roof"></i></span>
+              <b>공용시설 용도변경</b>
+              <small>노인정·독서실·피트니스 등 주민공동시설 용도전환</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick reveal reveal-d2" href="consult.html?cat=행위허가&amp;type=공용부 대수선" id="pick-repair">
+              <span class="pick__icon"><i class="fa-solid fa-trowel-bricks"></i></span>
+              <b>공용부 대수선</b>
+              <small>외벽·계단실·옥상 보수, 균열 보수 및 구조체 보강</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick reveal reveal-d3" href="consult.html?cat=행위허가&amp;type=전기차 충전시설" id="pick-ev">
+              <span class="pick__icon"><i class="fa-solid fa-charging-station"></i></span>
+              <b>전기차 충전시설</b>
+              <small>완속·급속 충전기 설치 위치, 전기실 용량 및 소방안전 기준</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick reveal reveal-d4" href="consult.html?cat=행위허가&amp;type=부대·복리시설 신축 및 리모델링" id="pick-new">
+              <span class="pick__icon"><i class="fa-solid fa-building-circle-check"></i></span>
+              <b>부대·복리시설<br>신축, 리모델링</b>
+              <small>경비실·분리수거장·주민시설 신설 및 전면 개선</small>
+              <span class="pick__go">상담 신청 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a class="pick pick--ghost reveal reveal-d1" href="consult.html?cat=행위허가&amp;type=그 외 공사(조경 재배치, 주차장 증설)" id="pick-apt-etc">
+              <span class="pick__icon"><i class="fa-solid fa-circle-question"></i></span>
+              <b>그 외 공사<br><small style="font-weight:700;color:var(--teal-700);font-size:.78rem;">(조경 재배치, 주차장 증설)</small></b>
+              <small>지상 주차장 확충, 조경 재배치 등 단지 내 행위허가 검토</small>
+              <span class="pick__go">문의하기 <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FLOW ================= -->
+    <section class="section" aria-labelledby="flowTitle">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Process</span>
+          <h2 class="section-title" id="flowTitle">행위허가는 <em>이렇게</em> 진행됩니다</h2>
+          <p class="section-sub">공사 업체 선정 전, 1단계부터 시작하시는 것이 가장 효율적입니다.</p>
+        </div>
+        <div class="flow">
+          <div class="flow-item reveal reveal-d1"><i class="fa-solid fa-magnifying-glass"></i><b>사전 검토</b><small>허가·신고 대상 및 동의 요건 확인</small></div>
+          <div class="flow-item reveal reveal-d1"><i class="fa-solid fa-users"></i><b>입주자 동의</b><small>동의서 양식·산정 방법 안내</small></div>
+          <div class="flow-item reveal reveal-d2"><i class="fa-solid fa-pen-ruler"></i><b>도면·서류 작성</b><small>설계도서·구조 검토서 준비</small></div>
+          <div class="flow-item reveal reveal-d2"><i class="fa-solid fa-paper-plane"></i><b>허가·신고 신청</b><small>관할 시·군·구 접수 및 협의</small></div>
+          <div class="flow-item reveal reveal-d3"><i class="fa-solid fa-helmet-safety"></i><b>공사</b><small>필요 시 감리·설계 변경 대응</small></div>
+          <div class="flow-item reveal reveal-d3"><i class="fa-solid fa-clipboard-check"></i><b>사용검사</b><small>준공 서류 제출·대장 반영</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONSENT / SPLIT ================= -->
+    <section class="section section--white" aria-labelledby="consentTitle">
+      <div class="container container--narrow">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow">Consent</span>
+            <h2 class="section-title" id="consentTitle">가장 까다로운 건 <em>동의 요건</em>입니다</h2>
+            <p class="section-sub" style="margin-bottom:22px;">공사 종류·대상 시설에 따라 필요한 동의 범위와 비율이 다릅니다. 잘못 받으면 처음부터 다시 받아야 합니다.</p>
+            <ul class="check-list">
+              <li><b>동의 대상 산정</b> — 전체 입주자인지, 해당 동 입주자인지 구분</li>
+              <li><b>동의서 양식</b> — 공사 내용·도면 요약을 포함한 양식 제공</li>
+              <li><b>입주자대표회의 의결</b> — 필요한 경우 안건 문구까지 안내</li>
+              <li><b>장기수선계획</b> — 공용부 공사 시 반영 여부 확인</li>
+            </ul>
+          </div>
+          <div class="split__img reveal reveal-d1">
+            <img src="images/apt-complex.png" alt="전기차 충전 주차장과 조경이 있는 아파트 단지 일러스트" loading="lazy" width="1024" height="1024">
+          </div>
+        </div>
+        <div class="callout reveal">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <div><strong>근거 법령</strong> — 「공동주택관리법」 제35조(행위허가 등의 기준)와 같은 법 시행령 별표 3에서 행위 유형별 허가·신고 기준과 동의 요건을 정하고 있습니다. 단지 상황에 맞는 정확한 기준은 사전 검토 단계에서 안내해 드립니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY ================= -->
+    <section class="section section--teal" aria-labelledby="whyTitle">
+      <div class="container container--narrow">
+        <div class="section-head reveal">
+          <span class="eyebrow">For managers</span>
+          <h2 class="section-title" id="whyTitle">관리사무소의 <em>업무 부담</em>을 줄여드립니다</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="f-card reveal reveal-d1">
+            <div class="f-card__icon"><i class="fa-solid fa-file-signature"></i></div>
+            <h3>서류는 저희가</h3>
+            <p>동의서 양식, 설계도서, 신청서까지 준비해 드립니다. 관리사무소는 동의 취합만 하시면 됩니다.</p>
+          </div>
+          <div class="f-card reveal reveal-d2">
+            <div class="f-card__icon f-card__icon--amber"><i class="fa-solid fa-person-chalkboard"></i></div>
+            <h3>입주민 설명 지원</h3>
+            <p>입주자대표회의나 설명회에서 공사 내용과 법적 절차를 쉽게 설명할 자료를 제공합니다.</p>
+          </div>
+          <div class="f-card reveal reveal-d3">
+            <div class="f-card__icon"><i class="fa-solid fa-handshake"></i></div>
+            <h3>시공사와 협업</h3>
+            <p>선정된 시공사와 도면·일정을 조율해 허가 조건에 맞게 공사가 진행되도록 돕습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" aria-labelledby="faqTitle">
+      <div class="container container--narrow" style="max-width:860px;">
+        <div class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2 class="section-title" id="faqTitle">자주 묻는 질문</h2>
+        </div>
+        <div class="faq">
+          <div class="faq-item reveal">
+            <button class="faq-q" id="faq-p1" aria-expanded="false"><span class="q">Q</span><span>행위허가 없이 공사하면 어떻게 되나요?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="faq-a"><div><p>공동주택관리법에 따라 <strong>과태료나 원상복구 명령</strong>을 받을 수 있고, 사용검사를 받지 못해 시설을 정상적으로 사용할 수 없게 될 수 있습니다.</p></div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" id="faq-p2" aria-expanded="false"><span class="q">Q</span><span>전기차 충전기 설치도 행위허가 대상인가요?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="faq-a"><div><p>설치 방식과 위치에 따라 다릅니다. <strong>주차면 변경·구조물 설치</strong>가 동반되면 허가·신고 대상이 될 수 있어, 전기 용량·소방 기준과 함께 사전 검토가 필요합니다.</p></div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" id="faq-p3" aria-expanded="false"><span class="q">Q</span><span>기간은 얼마나 걸리나요?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="faq-a"><div><p>동의 취합 기간을 제외하면 <strong>신고는 2~3주, 허가는 1~2개월</strong> 정도가 일반적입니다. 지자체 협의 부서가 많을수록 기간이 늘어납니다.</p></div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" id="faq-p4" aria-expanded="false"><span class="q">Q</span><span>견적은 어떻게 받나요?</span><i class="fa-solid fa-plus"></i></button>
+            <div class="faq-a"><div><p>단지명·공사 내용·대략적인 규모를 알려주시면 <strong>사전 검토 후 견적</strong>을 드립니다. 도면·사진은 이메일로 보내주시면 더 정확합니다.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="section section--teal cta-final" aria-labelledby="ctaTitle">
+      <div class="container">
+        <h2 class="reveal" id="ctaTitle">공사 업체 선정 전에<br>행위허가부터 확인하세요.</h2>
+        <p class="reveal reveal-d1">허가·신고 대상 여부, 동의 요건, 예상 일정을 무료로 정리해 드립니다.</p>
+        <div class="hero-cta reveal reveal-d2">
+          <a href="consult.html?cat=행위허가" id="cta-apt-consult" class="btn btn--accent btn--lg btn--shine">행위허가 상담 <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="tel:050713505091" data-site-tel id="cta-apt-phone" class="btn btn--light btn--lg"><i class="fa-solid fa-phone"></i> <span data-site="phone">0507-1350-5091</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>
