@@ -973,8 +973,10 @@ const server = http.createServer(async (req, res) => {
           const id = 'CS-' + now.getTime();
           const kstDate = new Date(now.getTime() + 9 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19);
 
-          fs.mkdirSync(path.dirname(CONSULT_FILE), { recursive: true });
-          fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+          try {
+            fs.mkdirSync(path.dirname(CONSULT_FILE), { recursive: true });
+            fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+          } catch (_) {}
 
           const savedFiles = [];
           const rawFiles = Array.isArray(body.files) ? body.files : [];
@@ -988,7 +990,9 @@ const server = http.createServer(async (req, res) => {
             const safeName = String(f.name).replace(/[^a-zA-Z0-9가-힣._-]/g, '_');
             const diskName = `${id}_${i + 1}_${safeName}`;
             const diskPath = path.join(UPLOAD_DIR, diskName);
-            fs.writeFileSync(diskPath, Buffer.from(b64, 'base64'));
+            try {
+              fs.writeFileSync(diskPath, Buffer.from(b64, 'base64'));
+            } catch (_) {}
             savedFiles.push({
               originalName: f.name,
               savedName: diskName,
@@ -1027,7 +1031,9 @@ const server = http.createServer(async (req, res) => {
             }
           }
           existing.unshift(record);
-          fs.writeFileSync(CONSULT_FILE, JSON.stringify(existing, null, 2), 'utf8');
+          try {
+            fs.writeFileSync(CONSULT_FILE, JSON.stringify(existing, null, 2), 'utf8');
+          } catch (_) {}
 
           // 이메일 발송 시도 (1순위: 네이버 SMTP 직접 발송, 2순위: FormSubmit 이메일 릴레이)
           let emailSent = false;
@@ -1105,6 +1111,10 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
-});
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}/`);
+  });
+}
+
+module.exports = server;
