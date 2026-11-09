@@ -27,13 +27,23 @@ window.SITE = {
     6: ["12:00", "19:00"]
   },
 
-  // 불법건축물 양성화 특별법 일정
+  // 불법건축물 양성화 특별법 일정 (법률 제21820호, 2026.06.16 공포, 2026.12.17 시행)
   lawStart: "2026-12-17T00:00:00+09:00",
   lawEnd: "2028-06-16T23:59:59+09:00",
 
-  // 상담 신청서 전송 주소 (예: Formspree "https://formspree.io/f/xxxxxx")
-  // 비워두면 신청 내용을 이메일(mailto)로 보내는 방식으로 동작합니다.
-  formEndpoint: "",
+  // 법제처 국가법령정보센터 Open API 설정 (https://open.law.go.kr/)
+  lawApi: {
+    mst: "286993",                       // 법령일련번호 (특정건축물 정리에 관한 특별조치법)
+    lawId: "015150",                     // 법령ID
+    lawNo: "21820",                      // 공포번호 (법률 제21820호)
+    promulgationDate: "2026-06-16",      // 공포일자
+    effectiveDate: "2026-12-17",         // 시행일자
+    endpoint: "/api/law/special-act",    // 로컬 서버 프록시 엔드포인트
+    fallbackUrl: "data/special-act-286993.json"
+  },
+
+  // 상담 신청서 전송 주소 (기본값: 자체 서버 "/api/consult" -> 서버 저장 및 hsyarchi@naver.com 자동 발송)
+  formEndpoint: "/api/consult",
 
   // 카카오톡 1:1 상담 링크 (예: "https://open.kakao.com/o/xxxxxx")
   // 링크를 입력하면 헤더 및 플로팅 버튼에 카카오톡 상담 버튼이 표시됩니다.

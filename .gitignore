@@ -13,3 +13,7 @@ yarn-error.log*
 # Environment
 .env
 .env.local
+
+# Private / Consultation data
+data/consultations.json
+data/uploads/
