@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://bareum-archi.vercel.app/sitemap.xml
+
