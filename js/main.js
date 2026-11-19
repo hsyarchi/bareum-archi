@@ -2212,11 +2212,49 @@
       return new Promise(function (resolve) {
         var reader = new FileReader();
         reader.onload = function () {
+          var rawUrl = reader.result;
+          // 1.2MB 초과 이미지 파일은 Vercel 서버리스 용량 제한(4.5MB) 초과 방지를 위해 선명도(최대 2000px)를 유지하며 경량화
+          if (file.type && /^image\/(jpeg|png|webp)$/i.test(file.type) && file.size > 1200 * 1024) {
+            var img = new Image();
+            img.onload = function () {
+              try {
+                var maxDim = 2000;
+                var w = img.width;
+                var h = img.height;
+                if (w > maxDim || h > maxDim) {
+                  if (w > h) { h = Math.round(h * (maxDim / w)); w = maxDim; }
+                  else { w = Math.round(w * (maxDim / h)); h = maxDim; }
+                }
+                var canvas = document.createElement("canvas");
+                canvas.width = w;
+                canvas.height = h;
+                var ctx = canvas.getContext("2d");
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, w, h);
+                ctx.drawImage(img, 0, 0, w, h);
+                var compressedUrl = canvas.toDataURL("image/jpeg", 0.84);
+                var outName = file.name.replace(/\.(png|webp)$/i, ".jpg");
+                resolve({
+                  name: outName,
+                  type: "image/jpeg",
+                  size: Math.round((compressedUrl.length * 3) / 4),
+                  dataUrl: compressedUrl
+                });
+              } catch (_) {
+                resolve({ name: file.name, type: file.type, size: file.size || 0, dataUrl: rawUrl });
+              }
+            };
+            img.onerror = function () {
+              resolve({ name: file.name, type: file.type || "application/octet-stream", size: file.size || 0, dataUrl: rawUrl });
+            };
+            img.src = rawUrl;
+            return;
+          }
           resolve({
             name: file.name,
             type: file.type || "application/octet-stream",
             size: file.size || 0,
-            dataUrl: reader.result
+            dataUrl: rawUrl
           });
         };
         reader.onerror = function () { resolve(null); };

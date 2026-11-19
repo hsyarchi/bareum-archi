@@ -678,9 +678,84 @@ function sendNaverSmtpMail(record, savedFiles) {
   });
 }
 
-function sendFormSubmitRelay(record) {
+function buildMultipartFormData(fields, files) {
+  const boundary = '----BareumFormBoundary' + Date.now().toString(16);
+  const chunks = [];
+
+  for (const [key, val] of Object.entries(fields)) {
+    chunks.push(
+      Buffer.from(
+        `--${boundary}\r\n` +
+        `Content-Disposition: form-data; name="${key}"\r\n\r\n` +
+        `${val == null ? '' : String(val)}\r\n`,
+        'utf8'
+      )
+    );
+  }
+
+  for (let i = 0; i < files.length; i++) {
+    const f = files[i];
+    if (!f || !f.base64) continue;
+    const safeFileName = String(f.originalName || `file_${i + 1}`).replace(/["\r\n]/g, '_');
+    const mime = f.mimeType || 'application/octet-stream';
+    const fileBuf = Buffer.from(f.base64, 'base64');
+    chunks.push(
+      Buffer.from(
+        `--${boundary}\r\n` +
+        `Content-Disposition: form-data; name="attachment"; filename="${safeFileName}"\r\n` +
+        `Content-Type: ${mime}\r\n\r\n`,
+        'utf8'
+      )
+    );
+    chunks.push(fileBuf);
+    chunks.push(Buffer.from('\r\n', 'utf8'));
+  }
+
+  chunks.push(Buffer.from(`--${boundary}--\r\n`, 'utf8'));
+  return {
+    boundary,
+    body: Buffer.concat(chunks)
+  };
+}
+
+function sendFormSubmitMultipart(fields, savedFiles) {
   return new Promise((resolve) => {
-    const payload = JSON.stringify({
+    const { boundary, body } = buildMultipartFormData(fields, savedFiles);
+    const req = https.request(
+      `https://formsubmit.co/${encodeURIComponent(ADMIN_EMAIL)}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': `multipart/form-data; boundary=${boundary}`,
+          'Content-Length': body.length,
+          'User-Agent': 'Mozilla/5.0 (BareumArchi-Server/1.0)',
+          'Origin': 'https://bareum-archi.vercel.app',
+          'Referer': 'https://bareum-archi.vercel.app/consult.html'
+        },
+        timeout: 25000
+      },
+      (res) => {
+        let data = '';
+        res.on('data', (c) => (data += c));
+        res.on('end', () => {
+          const isOk = (res.statusCode >= 200 && res.statusCode < 400) && !/unable to submit|error/i.test(data);
+          resolve({ ok: isOk, message: isOk ? '첨부파일 포함 전송 완료' : `HTTP ${res.statusCode}` });
+        });
+      }
+    );
+    req.on('error', (e) => resolve({ ok: false, message: e.message }));
+    req.on('timeout', () => {
+      req.destroy();
+      resolve({ ok: false, message: '타임아웃' });
+    });
+    req.write(body);
+    req.end();
+  });
+}
+
+function sendFormSubmitRelay(record, savedFiles = []) {
+  return new Promise(async (resolve) => {
+    const fields = {
       _subject: `[바름건축 상담신청] (${record.category || '일반'}) ${record.name} - ${record.phone}`,
       _template: 'table',
       _captcha: 'false',
@@ -696,7 +771,17 @@ function sendFormSubmitRelay(record) {
       신청인구분: record.role || '-',
       첨부파일: record.files && record.files.length ? record.files.map((f) => f.name).join(', ') : '없음',
       상황설명: record.message || ''
-    });
+    };
+
+    // 첨부파일이 있는 경우 FormSubmit 표준 multipart/form-data 엔드포인트로 실제 파일 바이너리 전송 시도
+    if (Array.isArray(savedFiles) && savedFiles.length > 0) {
+      const mpRes = await sendFormSubmitMultipart(fields, savedFiles);
+      if (mpRes && mpRes.ok) {
+        return resolve(mpRes);
+      }
+    }
+
+    const payload = JSON.stringify(fields);
 
     const req = https.request(
       `https://formsubmit.co/ajax/${encodeURIComponent(ADMIN_EMAIL)}`,
@@ -707,8 +792,8 @@ function sendFormSubmitRelay(record) {
           'Accept': 'application/json',
           'Content-Length': Buffer.byteLength(payload),
           'User-Agent': 'Mozilla/5.0 (BareumArchi-Server/1.0)',
-          'Origin': 'http://localhost:3000',
-          'Referer': 'http://localhost:3000/consult.html'
+          'Origin': 'https://bareum-archi.vercel.app',
+          'Referer': 'https://bareum-archi.vercel.app/consult.html'
         },
         timeout: 20000
       },
@@ -1052,7 +1137,7 @@ const server = http.createServer(async (req, res) => {
 
           if (!emailSent) {
             try {
-              const relayRes = await sendFormSubmitRelay(record);
+              const relayRes = await sendFormSubmitRelay(record, savedFiles);
               if (relayRes && relayRes.ok) {
                 emailSent = true;
                 mailMethod = 'formsubmit-relay';
